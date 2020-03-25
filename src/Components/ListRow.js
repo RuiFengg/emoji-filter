@@ -1,13 +1,24 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types"
 
 export default class ListRow extends Component {
+    static propTypes = {
+        symbol: PropTypes.string,
+        description: PropTypes.string
+    }
+
     render() {
         const { symbol, description } = this.props
         return (
-            <li className="list-group-item">
-                <span>{symbol}</span>
-                <span>{description}</span>
-            </li>
+            <button 
+                type="button"
+                className="list-group-item d-flex justify-content-between copy-to-clipboard"
+                data-clipboard-text={this.props.symbol}
+            >
+                {symbol}
+                {description}
+                <span>Click to Copy</span>
+            </button>
         )
     }
 }
