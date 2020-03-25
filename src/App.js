@@ -4,6 +4,8 @@ import SearchInput from './Components/SearchInput'
 import EmojiList from './Components/EmojiList'
 import axios from 'axios'
 import filterEmoji from './FilterEmoji'
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class App extends Component {
   constructor(props) {
@@ -32,13 +34,13 @@ handleSearchChange = event => {
 
 }
   render() {
-    const s = '\ud83d\ude00'
     return (
         <div className="container">
           <div className="row justify-content-center">
             
             <h3>
-            title header {s}
+            Emoji Filter
+            <FontAwesomeIcon icon={faFilter} />
             </h3>
           </div>
           <SearchInput textChange= {this.handleSearchChange}/>

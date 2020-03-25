@@ -9,7 +9,7 @@ export default class EmojiList extends Component {
                     <ListRow
                         key={emoji.slug} 
                         symbol={emoji.character} 
-                        description={emoji.group}
+                        description={emoji.unicodeName}
                     />
                 )}
             </ul>
