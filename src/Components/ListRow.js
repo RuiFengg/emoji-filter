@@ -13,7 +13,7 @@ export default class ListRow extends Component {
             <button 
                 type="button"
                 className="list-group-item d-flex justify-content-between copy-to-clipboard"
-                data-clipboard-text={this.props.symbol}
+                data-clipboard-text={symbol}
             >
                 {symbol}
                 {description}

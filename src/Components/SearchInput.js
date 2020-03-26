@@ -2,16 +2,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { filterSearch } from '../actions/dataActions'
+import { connect } from 'react-redux'
 
-export default class SearchInput extends Component {
+class SearchInput extends Component {
     static propTypes = {
         textChange: PropTypes.func
     }
-
-    handleChange = event => {
-        this.props.textChange(event)
-    }
-
+    
     render() {
         return (
             <div className="card card-body my-3">
@@ -26,7 +24,7 @@ export default class SearchInput extends Component {
                             className="form-control" 
                             type="text" 
                             placeholder="Enter Keyword"
-                            onChange={this.handleChange}
+                            onChange={event => this.props.filterSearch(event.target.value)}
                         />
                     </div>
                 </form>
@@ -34,3 +32,10 @@ export default class SearchInput extends Component {
         )
     }
 }
+const mapStateToProps = state => ({
+    filteredData: state.filteredData,
+    CompleteData: state.CompleteData
+})
+
+
+export default connect(mapStateToProps, {filterSearch})(SearchInput)

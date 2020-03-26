@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import ListRow from './ListRow'
 import Clipboard from 'clipboard'
 import PropTypes from 'prop-types'
+import { fetchData } from '../actions/dataActions'
+import { connect } from 'react-redux'
 
-export default class EmojiList extends Component {
+class EmojiList extends Component {
     static propTypes = {
         filteredData: PropTypes.array
     }
 
     componentDidMount() {
+        this.props.fetchData()
         this.clipboard = new Clipboard(".copy-to-clipboard")
     }
 
@@ -19,7 +22,7 @@ export default class EmojiList extends Component {
     render() {
         return (
             <ul className="list-group">
-                {this.props.filteredData.map(emoji => 
+                {this.props.filteredData.map(emoji =>
                     <ListRow
                         key={emoji.slug} 
                         symbol={emoji.character} 
@@ -30,3 +33,8 @@ export default class EmojiList extends Component {
         )
     }
 }
+const mapStateToProps = state => ({
+    filteredData: state.filteredData
+})
+
+export default connect(mapStateToProps, { fetchData })(EmojiList)
